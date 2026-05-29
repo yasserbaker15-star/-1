@@ -921,8 +921,8 @@
             let hasAdminOrFinanceView = isAdmin || isAcc;
 
             if (!isLoggedIn) {
-                // عرض الزوار (العام)
-                thead.innerHTML = `<th>الاسم</th><th>الاشتراك</th><th>البدء</th><th>الانتهاء</th><th>الحالة</th>`;
+                // عرض الزوار (تمت إضافة عمود الصورة هنا)
+                thead.innerHTML = `<th>الصورة</th><th>الاسم</th><th>الاشتراك</th><th>البدء</th><th>الانتهاء</th><th>الحالة</th>`;
             } else if (isAdmin) { 
                 thead.innerHTML = `<th>الصورة</th><th>الاسم</th><th>الهوية</th><th>الجوال</th><th>الاشتراك</th><th>الدفع</th><th>المبلغ</th><th>البدء</th><th>الانتهاء</th><th>الحالة</th><th class="action-column">إجراءات</th>`;
             } else if (isAcc) { 
@@ -973,7 +973,8 @@
                     const expiredLabel = isExpired ? `<span class="expired-label">(انتهى الاشتراك)</span>` : '';
                     
                     if (!isLoggedIn) {
-                        row.innerHTML = `<td style="font-weight:bold;">${member.name}</td><td><span class="badge" style="font-size:12px;">${member.subscription}</span></td><td>${member.start}</td><td class="${isExpired ? 'expired-text' : ''}">${member.end}</td><td class="${isExpired ? 'expired-text' : ''}">${isExpired ? 'منتهي ❌' : 'فعال ✅'}</td>`;
+                        // عرض الزوار (تمت إضافة حقل الصورة هنا)
+                        row.innerHTML = `<td><img src="${member.img}" class="member-img"></td><td style="font-weight:bold;">${member.name}</td><td><span class="badge" style="font-size:12px;">${member.subscription}</span></td><td>${member.start}</td><td class="${isExpired ? 'expired-text' : ''}">${member.end}</td><td class="${isExpired ? 'expired-text' : ''}">${isExpired ? 'منتهي ❌' : 'فعال ✅'}</td>`;
                     } else if (isAdmin) {
                         const deleteBtnHtml = `<button class="btn-delete" onclick="deleteMember(${member.id_row}, '${member.name}')">حذف</button>`;
                         row.innerHTML = `<td><img src="${member.img}" class="member-img"></td><td style="font-weight:bold;">${member.name} <br> ${expiredLabel}</td><td>${member.id_num}</td><td dir="ltr" style="text-align:right;">${member.phone}</td><td><span class="badge" style="font-size:12px;">${member.subscription}</span></td><td>${member.payment}</td><td style="color:var(--success-color); font-weight:900;">${member.price}</td><td>${member.start}</td><td class="${isExpired ? 'expired-text' : ''}">${member.end}</td><td class="${isExpired ? 'expired-text' : ''}">${isExpired ? 'منتهي ❌' : 'فعال ✅'}</td><td class="action-column">${deleteBtnHtml}</td>`;
